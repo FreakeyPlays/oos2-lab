@@ -19,18 +19,21 @@ public class Senser implements Runnable
 		return list;
 	}
 	
-	public void run()
-	{
-		String aircraftList;
+	public void run() {
+		String[] aircraftList;
 		JSONArray planeArray;
-		
-		while (true)
-		{
-			aircraftList = getSentence();
-			System.out.println(aircraftList);
-			
-			planeArray = server.getPlaneArray();
-			System.out.println(planeArray);
-		}		
+
+		while (true) {
+			aircraftList = getSentence().split("],");
+			for (String i : aircraftList) {
+				System.out.print(i);
+				if (!aircraftList[aircraftList.length - 1].equals(i))
+					System.out.println("],");
+			}
+			System.out.println();
+
+			// planeArray = server.getPlaneArray();
+			// System.out.println(planeArray);
+		}
 	}
 }
