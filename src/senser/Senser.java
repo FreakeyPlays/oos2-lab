@@ -24,16 +24,18 @@ public class Senser implements Runnable
 		JSONArray planeArray;
 
 		while (true) {
-			aircraftList = getSentence().split("],");
-			for (String i : aircraftList) {
-				System.out.print(i);
-				if (!aircraftList[aircraftList.length - 1].equals(i))
-					System.out.println("],");
-			}
-			System.out.println();
+			// aircraftList = getSentence().split("],");
+			// for (String i : aircraftList) {
+			// 	System.out.print(i);
+			// 	if (!aircraftList[aircraftList.length - 1].equals(i))
+			// 		System.out.println("],");
+			// }
+			// System.out.println();
 
-			// planeArray = server.getPlaneArray();
-			// System.out.println(planeArray);
+			planeArray = server.getPlaneArray();
+			for (int i = 0; i < planeArray.length(); i++) {
+				System.out.println(planeArray.getJSONArray(i));
+			}
 		}
 	}
 }
