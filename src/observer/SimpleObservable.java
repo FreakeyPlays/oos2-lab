@@ -7,7 +7,7 @@ public class SimpleObservable<T> implements Observable<T> {
     private boolean changed = false;
     private List<Observer<T>> observers;
 
-    public SimpleObservable(){
+    public SimpleObservable() {
         observers = new CopyOnWriteArrayList<>();
     }
 
@@ -28,11 +28,11 @@ public class SimpleObservable<T> implements Observable<T> {
 
     @Override
     public void notifyObservers(T arg) {
-        if(!changed)
+        if (!changed)
             return;
         clearChanged();
-        for (Observer<T> o: observers) {
-            o.update(this,arg);
+        for (Observer<T> o : observers) {
+            o.update(this, arg);
         }
     }
 

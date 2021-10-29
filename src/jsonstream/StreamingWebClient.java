@@ -31,8 +31,8 @@ public class StreamingWebClient {
 			BufferedReader br = new BufferedReader(new FileReader("jsonsky.txt"));
 			do {
 				line = br.readLine();
-				//System.out.println(line);
-				if(line != null)
+				// System.out.println(line);
+				if (line != null)
 					q.add(line);
 			} while (line != null);
 			br.close();
@@ -42,7 +42,7 @@ public class StreamingWebClient {
 	}
 
 	public StreamingWebClient(String urlstr, int timeout) {
-		
+
 		url = urlstr;
 
 		// realization of the observable pattern via queue
@@ -53,14 +53,19 @@ public class StreamingWebClient {
 			public void run() {
 				String json;
 
-				while (!exit) 
-				{
+				while (!exit) {
 					try {
 						/* Start of Fix */
 						TrustManager[] trustAllCerts = new TrustManager[] { new X509TrustManager() {
-							public java.security.cert.X509Certificate[] getAcceptedIssuers() { return null; }
-							public void checkClientTrusted(X509Certificate[] certs, String authType) { }
-							public void checkServerTrusted(X509Certificate[] certs, String authType) { }
+							public java.security.cert.X509Certificate[] getAcceptedIssuers() {
+								return null;
+							}
+
+							public void checkClientTrusted(X509Certificate[] certs, String authType) {
+							}
+
+							public void checkServerTrusted(X509Certificate[] certs, String authType) {
+							}
 
 						} };
 
@@ -70,18 +75,21 @@ public class StreamingWebClient {
 
 						// Create all-trusting host name verifier
 						HostnameVerifier allHostsValid = new HostnameVerifier() {
-							public boolean verify(String hostname, SSLSession session) { return true; }
+							public boolean verify(String hostname, SSLSession session) {
+								return true;
+							}
 						};
 						// Install the all-trusting host verifier
 						HttpsURLConnection.setDefaultHostnameVerifier(allHostsValid);
-						/* End of the fix*/
+						/* End of the fix */
 
 						// System.out.println(url);
 						URL u = new URL(url);
 						c = (HttpsURLConnection) u.openConnection();
 						c.setRequestMethod("GET");
 						c.setRequestProperty("Content-length", "0");
-						c.setRequestProperty("User-Agent", "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.11 (KHTML, like Gecko) Chrome/23.0.1271.95 Safari/537.11");
+						c.setRequestProperty("User-Agent",
+								"Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.11 (KHTML, like Gecko) Chrome/23.0.1271.95 Safari/537.11");
 
 						c.setUseCaches(false);
 						c.setAllowUserInteraction(false);
@@ -98,12 +106,12 @@ public class StreamingWebClient {
 							StringBuilder sb = new StringBuilder();
 							String line;
 							while ((line = br.readLine()) != null) {
-								sb.append(line);//+"\n");
+								sb.append(line);// +"\n");
 							}
-							json =  sb.toString();
+							json = sb.toString();
 							break;
-						default: 
-							json =  status.toString();
+						default:
+							json = status.toString();
 						}
 					} catch (Exception ex) {
 						continue;
@@ -111,9 +119,10 @@ public class StreamingWebClient {
 					System.out.println(json);
 					q.add(json);
 					try {
-						//RF: Aenderung auf 10 Sekunden 
+						// RF: Aenderung auf 10 Sekunden
 						Thread.sleep(5000);
-					} catch (InterruptedException e) {}
+					} catch (InterruptedException e) {
+					}
 					c.disconnect();
 				}
 			} // run
@@ -128,13 +137,12 @@ public class StreamingWebClient {
 			json = q.take();
 		} catch (Exception e) {
 		}
-		//System.out.println(json);
+		// System.out.println(json);
 		return json;
 	} // readJSON
-	
+
 	public void stop() {
 		exit = true;
 	}
 
-	
 } // class

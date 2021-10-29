@@ -12,6 +12,6 @@ public interface ActiveAircraftsInterface {
 
 	public BasicAircraft retrieve(String icao);
 
-	public ArrayList<BasicAircraft> values ();
+	public ArrayList<BasicAircraft> values();
 
 }
