@@ -1,7 +1,7 @@
 package senser;
 
 public class AircraftDisplay {
-    public void display(AircraftSentence acs) {
-        System.out.println(acs.aircraft);
+    public void displayData(AircraftSentence acs) {
+        System.out.println(acs.getData());
     }
 }

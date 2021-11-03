@@ -1,5 +1,8 @@
 package senser;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.json.JSONArray;
 
 import jsonstream.*;
@@ -11,29 +14,23 @@ public class Senser implements Runnable {
 		this.server = server;
 	}
 
-	// private String getSentence() {
-	// String list = server.getPlaneListAsString();
-	// return list;
-	// }
-
 	public void run() {
-		// String[] aircraftList;
 		JSONArray planeArray;
-		AircraftSentenceFactory acsF = new AircraftSentenceFactory();
 
 		while (true) {
-			// aircraftList = getSentence().split("],");
-			// for (String i : aircraftList) {
-			// System.out.print(i);
-			// if (!aircraftList[aircraftList.length - 1].equals(i))
-			// System.out.println("],");
-			// }
-			// System.out.println();
+			List<AircraftSentence> planeList = new ArrayList<AircraftSentence>();
+			AircraftSentenceFactory acsf = new AircraftSentenceFactory();
+			AircraftDisplay display = new AircraftDisplay();
 
 			planeArray = server.getPlaneArray();
+
+			System.out.println("Current Aircrafts in range " + planeArray.length());
+
 			for (int i = 0; i < planeArray.length(); i++) {
-				acsF.addSentence(planeArray.getJSONArray(i).toString());
+				planeList.add(acsf.createSentence(planeArray.optString(i).toString()));
+				display.displayData(planeList.get(i));
 			}
+
 		}
 	}
 }

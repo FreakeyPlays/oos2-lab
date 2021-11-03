@@ -1,9 +1,13 @@
 package senser;
 
-public class AircraftSentence extends AircraftDisplay {
-    protected String aircraft;
+public class AircraftSentence {
+    private String aircraftData;
 
-    public AircraftSentence(String s) {
-        this.aircraft = s;
+    public AircraftSentence(String data) {
+        this.aircraftData = data;
+    }
+
+    public String getData() {
+        return aircraftData;
     }
 }
