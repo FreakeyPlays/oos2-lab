@@ -1,13 +1,15 @@
 package senser;
 
-public class AircraftSentence {
-    private String aircraftData;
+import org.json.JSONArray;
 
-    public AircraftSentence(String data) {
+public class AircraftSentence {
+    private JSONArray aircraftData;
+
+    public AircraftSentence(JSONArray data) {
         this.aircraftData = data;
     }
 
-    public String getData() {
+    public JSONArray getData() {
         return aircraftData;
     }
 }

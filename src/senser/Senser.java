@@ -27,7 +27,7 @@ public class Senser implements Runnable {
 			System.out.println("Current Aircrafts in range " + planeArray.length());
 
 			for (int i = 0; i < planeArray.length(); i++) {
-				planeList.add(acsf.createSentence(planeArray.optString(i).toString()));
+				planeList.add(acsf.createSentence(planeArray.getJSONArray(i)));
 				display.displayData(planeList.get(i));
 			}
 
