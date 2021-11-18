@@ -48,7 +48,7 @@ public class BasicAircraft {
 	public static ArrayList<String> getAttributesNames() {
 		ArrayList<String> attributes = new ArrayList<String>();
 
-		// TODO: return needed names
+		// TODO: return needed names Lab 4-6
 
 		return attributes;
 	}
@@ -56,7 +56,7 @@ public class BasicAircraft {
 	public static ArrayList<Object> getAttributesValues(BasicAircraft ac) {
 		ArrayList<Object> attributes = new ArrayList<Object>();
 
-		// TODO: return needed values
+		// TODO: return needed values Lab 4-6
 
 		return attributes;
 	}
