@@ -1,6 +1,5 @@
 package messer;
 
-import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -48,7 +47,12 @@ public class BasicAircraft {
 	public static ArrayList<String> getAttributesNames() {
 		ArrayList<String> attributes = new ArrayList<String>();
 
-		// TODO: return needed names Lab 4-6
+		attributes.add("icao");
+		attributes.add("operator");
+		attributes.add("posTime");
+		attributes.add("coordinate");
+		attributes.add("speed");
+		attributes.add("trak");
 
 		return attributes;
 	}
@@ -56,7 +60,12 @@ public class BasicAircraft {
 	public static ArrayList<Object> getAttributesValues(BasicAircraft ac) {
 		ArrayList<Object> attributes = new ArrayList<Object>();
 
-		// TODO: return needed values Lab 4-6
+		attributes.add(ac.getIcao());
+		attributes.add(ac.getOperator());
+		attributes.add(ac.getPosTime());
+		attributes.add(ac.getCoordinate());
+		attributes.add(ac.getSpeed());
+		attributes.add(ac.getTrak());
 
 		return attributes;
 	}

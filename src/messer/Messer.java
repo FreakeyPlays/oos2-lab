@@ -5,13 +5,13 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
 
-import org.json.JSONArray;
-
 import observer.Observable;
 import observer.Observer;
+import observer.SimpleObservable;
 import senser.AircraftSentence;
 
-public class Messer implements Runnable, Observer<AircraftSentence> {
+public class Messer extends SimpleObservable<BasicAircraft> implements Runnable, Observer<AircraftSentence> {
+    private boolean lab2 = false;
     Queue<AircraftSentence> queue;
 
     public Messer() {
@@ -33,7 +33,11 @@ public class Messer implements Runnable, Observer<AircraftSentence> {
             try {
                 BasicAircraft bac = acf.createAircraft(queue.poll());
                 aircraftList.add(bac);
-                display.displayAircraft(bac);
+                if (lab2) {
+                    display.displayAircraft(bac);
+                }
+                setChanged();
+                notifyObservers(bac);
             } catch (NullPointerException e) {
 
             }
