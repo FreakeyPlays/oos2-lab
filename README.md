@@ -3,5 +3,5 @@ A software that displays airplanes in a certain radius on a map and a list made 
 
 To run this Programm you need to add the vmArguments 
 ```
-"--module-path \"C:/{Path to JavaFX}\" --add-modules javafx.controls,javafx.fxml,javafx.web,javafx.graphics"
+"--module-path \"C:/{Path to JavaFX}\lib" --add-modules javafx.controls,javafx.fxml,javafx.web,javafx.graphics"
 ```
